@@ -1,0 +1,632 @@
+/* =====================================================
+   FOTO LOGIN SYSTEM - style.css
+   ALL design lives in this file (colours, fonts, spacing).
+   Used by: index.html, forgot-password.html, signup.html
+   ===================================================== */
+
+/* ---------- Font (Poppins) ---------- */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+/* =====================================================
+   - COLOURS -   (change these first!)
+   ===================================================== */
+:root {
+  /* Page background */
+  --bg-dark:           #0a1730;                  /* darkest blue */
+  --bg-mid:            #14305a;                  /* middle blue */
+  --bg-glow:           rgba(70, 120, 200, 0.55); /* soft glow top-right */
+
+  /* Card */
+  --card-bg:           rgba(222, 227, 236, 0.93);
+  --card-border:       rgba(255, 255, 255, 0.7);
+
+  /* Text */
+  --text-dark:         #111827;   /* FOTO title, input text */
+  --text-grey:         #6b7280;   /* small texts */
+  --text-light:        #9ca3af;   /* forgot password, eye icon */
+  --link-color:        #374a6d;   /* "Sign up" / "Log in" links */
+
+  /* Blue (active tab + buttons) */
+  --blue:              #2563eb;
+  --blue-hover:        #3b76f0;   /* button on hover (lighter) */
+  --blue-text:         #ffffff;
+
+  /* Tabs + inputs */
+  --tab-track:         #cbd1dc;   /* box behind both tabs */
+  --tab-inactive:      #d6dbe4;
+  --tab-inactive-text: #5b6472;
+  --input-bg:          rgba(255, 255, 255, 0.35);
+  --input-border:      #aab2c0;
+
+  /* Text under the card */
+  --footer-text:       rgba(255, 255, 255, 0.55);
+
+  /* Dashboard pages */
+  --dash-bg:           #f2f4f8;   /* page background */
+  --dash-card:         #ffffff;   /* white cards */
+  --dash-muted:        #8a93a3;   /* small grey text */
+  --red:               #e5322d;   /* Logout */
+  --amber:             #f5a60a;   /* Photo of the Month badge */
+
+  /* Department colours (card + button) */
+  --bsit:              #1f1f1f;
+  --bsit-light:        #3a3a3a;
+  --bsed:              #12887d;
+  --bsed-light:        #1fb3a4;
+  --bshm:              #f97316;
+  --bshm-light:        #fb8f3d;
+  --beed:              #2563eb;
+  --beed-light:        #3b76f0;
+}
+
+/* =====================================================
+   - BASIC RESET + PAGE BACKGROUND -
+   ===================================================== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  font-family: "Poppins", Arial, sans-serif;
+  overflow-x: hidden;
+  /* dark blue gradient + soft glow top-right */
+  background:
+    radial-gradient(circle at 88% 8%, var(--bg-glow), transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(40, 90, 160, 0.45), transparent 50%),
+    linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-mid) 50%, var(--bg-dark) 100%);
+  background-attachment: fixed;
+}
+
+/* =====================================================
+   - SCHOOL LOGO (faded, behind the card) -
+   Uses logo.png from this folder, so it shows on EVERY page
+   (login, student, forgot password, sign up).
+   To change it: replace logo.png with another transparent PNG.
+   ===================================================== */
+body::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 525px;               /* logo size - make bigger or smaller here */
+  height: 525px;
+  max-width: 95vw;
+  max-height: 95vw;
+  transform: translate(-50%, -50%);
+  opacity: 0.2;               /* how faded the logo is (0 = hidden, 1 = solid) */
+  pointer-events: none;
+  background-image: url("logo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* =====================================================
+   - CARD (the white box in the centre) -
+   ===================================================== */
+.login-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  padding: 30px 32px 32px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+}
+
+/* ---------- Title + small text ---------- */
+.brand-title {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  color: var(--text-dark);
+}
+.brand-subtitle {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-grey);
+  margin-top: 4px;
+}
+
+/* Heading on forgot-password / signup pages */
+.page-heading {
+  margin-top: 22px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+.page-note {
+  margin-top: 6px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-grey);
+}
+
+/* =====================================================
+   - TABS (Photo Journalist | Student) -
+   ===================================================== */
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-top: 22px;
+  padding: 4px;
+  background: var(--tab-track);
+  border-radius: 12px;
+}
+.tab-btn {
+  flex: 1;
+  padding: 10px 8px;
+  border: none;
+  border-radius: 9px;
+  background: var(--tab-inactive);
+  color: var(--tab-inactive-text);
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.tab-btn.active {                 /* the selected tab */
+  background: var(--blue);
+  color: var(--blue-text);
+}
+
+/* =====================================================
+   - FORM PANELS (only the active one is visible) -
+   ===================================================== */
+.form-panel { display: none; margin-top: 18px; }
+.form-panel.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Empty space where the Student password used to be */
+.student-space { height: 26px; }
+
+/* Form on forgot-password / signup pages */
+.page-form { margin-top: 18px; }
+
+/* =====================================================
+   - INPUT FIELDS -
+   ===================================================== */
+.input-box {
+  position: relative;
+  margin-bottom: 14px;
+}
+.input-box input {
+  width: 100%;
+  height: 46px;
+  padding: 0 44px 0 16px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.input-box input::placeholder { color: var(--text-grey); }
+.input-box input:focus { border-color: var(--blue); }
+
+/* Eye icon inside the password box */
+.eye-btn {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+}
+.eye-btn svg { width: 18px; height: 18px; }
+
+/* =====================================================
+   - BUTTONS (Login, Enter Gallery, Send Reset Link, Create Account) -
+   ===================================================== */
+.btn-blue {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: var(--blue);
+  color: var(--blue-text);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35);
+  transition: background 0.2s ease;
+}
+.btn-blue:hover { background: var(--blue-hover); }   /* hover = slightly lighter */
+
+/* =====================================================
+   - LINKS -
+   ===================================================== */
+/* "Forgot Password" (small, left-aligned) */
+.forgot-link {
+  display: inline-block;
+  margin: -4px 0 16px;
+  font-size: 12px;
+  color: var(--text-light);
+  text-decoration: none;
+}
+.forgot-link:hover { color: var(--text-grey); text-decoration: underline; }
+
+/* "Don't have an account? Sign up" and "Already have an account? Log in" */
+.signup-text {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-grey);
+}
+.signup-text a {
+  color: var(--link-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+.signup-text a:hover { text-decoration: underline; }  /* underline on hover */
+
+/* "<- Back to Login" */
+.back-link {
+  display: block;
+  margin-top: 16px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--link-color);
+  text-decoration: none;
+}
+.back-link:hover { text-decoration: underline; }
+
+/* =====================================================
+   - FOOTER (small text under the card) -
+   ===================================================== */
+.page-footer {
+  position: relative;
+  z-index: 1;
+  margin-top: 18px;
+  text-align: center;
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--footer-text);
+}
+
+/* =====================================================
+   - DASHBOARD PAGES -
+   Used by: student-dashboard.html, journalist-dashboard.html
+   ===================================================== */
+
+/* ---------- Page base (no logo, no centering) ---------- */
+body.dashboard-page {
+  display: block;
+  padding: 0;
+  background: var(--dash-bg);
+  background-attachment: scroll;
+  color: var(--text-dark);
+}
+body.dashboard-page::before { display: none; }   /* hide the login logo */
+
+.icon-sprite { display: none; }                  /* hidden icon list */
+.icon {                                          /* every small icon */
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+/* ---------- Top bar ---------- */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 51px;
+  padding: 0 40px;
+  background: #fff;
+}
+.top-logo { font-size: 19px; font-weight: 800; color: var(--text-dark); }
+.top-right { display: flex; align-items: center; gap: 20px; }
+
+.role-badge {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.role-student    { background: #e8effd; color: var(--blue); }
+.role-journalist { background: #fef3d3; color: #b7791f; }
+
+.top-icon { display: flex; color: #4b5563; }
+.top-icon .icon { width: 18px; height: 18px; }
+
+/* Logout = the ONLY clickable thing on the dashboards */
+.logout-link {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--red);
+  text-decoration: none;
+}
+.logout-link:hover { text-decoration: underline; }
+.logout-link .icon { width: 15px; height: 15px; }
+
+/* ---------- Student: blue welcome banner ---------- */
+.welcome-banner {
+  padding: 7px 16px;
+  background: var(--blue);
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ---------- Page content ---------- */
+.page-content { padding: 36px 40px 0; }
+.welcome-title { font-size: 28px; font-weight: 700; line-height: 1.2; }
+.welcome-sub { margin-top: 4px; font-size: 12px; color: var(--dash-muted); }
+
+.section-title {
+  margin: 30px 0 16px;
+  font-size: 15px;
+  font-weight: 700;
+}
+.section-title-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 38px;
+}
+.section-title-icon .icon { width: 16px; height: 16px; }
+
+/* ---------- Department cards ---------- */
+.dept-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px;
+}
+.dept-card {
+  overflow: hidden;
+  background: var(--dash-card);
+  border-radius: 15px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Each department sets its own colours + photo */
+.dept-bsit { --dept-color: var(--bsit); --dept-light: var(--bsit-light); }
+.dept-bsed { --dept-color: var(--bsed); --dept-light: var(--bsed-light); }
+.dept-bshm { --dept-color: var(--bshm); --dept-light: var(--bshm-light); }
+.dept-beed { --dept-color: var(--beed); --dept-light: var(--beed-light); }
+
+/* Photo area (add your photos in the images folder) */
+.dept-photo {
+  position: relative;
+  height: 143px;
+  background-color: var(--dept-color);
+  background-size: cover;
+  background-position: center;
+}
+.dept-photo::before {            /* colour tint over the photo */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--dept-color);
+  opacity: 0.85;
+}
+.dept-bsit .dept-photo { background-image: url("images/bsit.jpg"); }
+.dept-bsed .dept-photo { background-image: url("images/bsed.jpg"); }
+.dept-bshm .dept-photo { background-image: url("images/bshm.jpg"); }
+.dept-beed .dept-photo { background-image: url("images/beed.jpg"); }
+
+.dept-tag {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  padding: 3px 9px;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 4px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+}
+.dept-info { position: absolute; left: 14px; right: 14px; bottom: 12px; color: #fff; }
+.dept-code { font-size: 13px; font-weight: 700; }
+.dept-name { margin-top: 2px; font-size: 11px; line-height: 1.35; color: rgba(255, 255, 255, 0.82); }
+
+/* White part under the photo */
+.dept-body { padding: 13px 14px 14px; }
+.dept-stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #374151;
+}
+.dept-stats span { display: flex; align-items: center; gap: 6px; }
+
+/* "View Gallery" (looks like a button, does nothing) */
+.dept-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 30px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--dept-color), var(--dept-light));
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: default;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* ---------- Student: Photo of the Month ---------- */
+.featured {
+  position: relative;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 15px;
+  background-color: #3a3a3a;
+  background-image:
+    linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1) 65%),
+    url("images/photo-of-the-month.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.featured-badge {
+  position: absolute;
+  top: 17px;
+  left: 17px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 5px;
+  background: var(--amber);
+  color: #1a1a1a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.featured-text { position: absolute; left: 24px; bottom: 24px; }
+.featured-month {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.featured-title { margin: 4px 0 14px; font-size: 22px; font-weight: 700; color: #fff; }
+.featured-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: default;
+}
+
+.dash-footer {
+  padding: 56px 16px 24px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #aab1be;
+}
+
+/* ---------- Photo Journalist: sidebar + layout ---------- */
+.journalist-layout { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 237px;
+  flex-shrink: 0;
+  background: #fff;
+  border-right: 1px solid #eceff4;
+}
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  height: 55px;
+  padding-left: 21px;
+  font-size: 18px;
+  font-weight: 800;
+}
+.sidebar-nav { padding-top: 12px; }
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 40px;
+  margin: 0 12px 6px;
+  padding: 0 14px;
+  border-radius: 9px;
+  font-size: 14px;
+  color: #5b6472;
+  cursor: default;
+}
+.nav-item .icon { width: 16px; height: 16px; }
+.nav-item.active { background: #e8effd; color: var(--blue); font-weight: 600; }
+
+.journalist-main { flex: 1; min-width: 0; }
+.journalist-page .top-bar {
+  height: 55px;
+  padding: 0 32px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+}
+.journalist-page .top-logo { font-size: 18px; }
+.journalist-page .page-content { padding: 34px 32px 40px; }
+.journalist-page .dept-photo { height: 162px; }
+.journalist-page .dept-grid { gap: 18px; }
+.journalist-page .section-title { margin: 34px 0 16px; }
+
+/* ---------- Photo Journalist: number cards ---------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.stat-card {
+  padding: 24px;
+  background: var(--dash-card);
+  border-radius: 15px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+.stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+}
+.stat-icon .icon { width: 20px; height: 20px; }
+.stat-blue   { background: #e6edfd; color: #2563eb; }
+.stat-green  { background: #def3ee; color: #15857a; }
+.stat-orange { background: #ffeadb; color: #f26b1d; }
+.stat-yellow { background: #fff5d1; color: #e9a800; }
+.stat-number { margin-top: 14px; font-size: 26px; font-weight: 700; line-height: 1.2; }
+.stat-label { font-size: 12px; color: var(--dash-muted); }
+
+/* ---------- Smaller screens ---------- */
+@media (max-width: 1000px) {
+  .dept-grid, .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .dept-grid, .stats-grid { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .page-content, .journalist-page .page-content { padding-left: 16px; padding-right: 16px; }
+  .top-bar, .journalist-page .top-bar { padding: 0 16px; }
+  .featured { height: 260px; }
+}

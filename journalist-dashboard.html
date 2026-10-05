@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FOTO | Photo Journalist Dashboard</title>
+  <!-- ALL design comes from style.css -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page journalist-page">
+
+  <!-- ===== ICON LIST (hidden - icons are used below with <use>) ===== -->
+  <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+    <symbol id="i-photos" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+    <symbol id="i-activity" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="1"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></symbol>
+    <symbol id="i-drive" viewBox="0 0 24 24"><line x1="22" y1="12" x2="2" y2="12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><line x1="6" y1="16" x2="6.01" y2="16"/><line x1="10" y1="16" x2="10.01" y2="16"/></symbol>
+  </svg>
+
+  <div class="journalist-layout">
+
+    <!-- ===== SIDEBAR (left menu - none of these are clickable) ===== -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">FOTO</div>
+      <nav class="sidebar-nav">
+        <div class="nav-item active"><svg class="icon"><use href="#i-grid"/></svg> Dashboard</div>
+        <div class="nav-item"><svg class="icon"><use href="#i-upload"/></svg> Upload Photos</div>
+        <div class="nav-item"><svg class="icon"><use href="#i-star"/></svg> Photo of the Month</div>
+        <div class="nav-item"><svg class="icon"><use href="#i-activity"/></svg> Activity Log</div>
+        <div class="nav-item"><svg class="icon"><use href="#i-trash"/></svg> Recently Deleted</div>
+      </nav>
+    </aside>
+
+    <div class="journalist-main">
+
+      <!-- ===== TOP BAR ===== -->
+      <header class="top-bar">
+        <span class="top-logo">FOTO</span>
+        <div class="top-right">
+          <span class="role-badge role-journalist">📷 Photo Journalist</span>
+          <span class="top-icon"><svg class="icon"><use href="#i-user"/></svg></span>
+          <!-- LOGOUT: goes back to the Photo Journalist login (the only working link) -->
+          <a class="logout-link" href="index.html#journalist">
+            <svg class="icon"><use href="#i-logout"/></svg> Logout
+          </a>
+        </div>
+      </header>
+
+      <main class="page-content">
+
+        <!-- ===== NUMBER CARDS ===== -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon stat-blue"><svg class="icon"><use href="#i-photos"/></svg></div>
+            <p class="stat-number">1,049</p>
+            <p class="stat-label">Total Photos</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon stat-green"><svg class="icon"><use href="#i-calendar"/></svg></div>
+            <p class="stat-number">46</p>
+            <p class="stat-label">Total Events</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon stat-orange"><svg class="icon"><use href="#i-building"/></svg></div>
+            <p class="stat-number">4</p>
+            <p class="stat-label">Departments</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon stat-yellow"><svg class="icon"><use href="#i-drive"/></svg></div>
+            <p class="stat-number">3.2 GB</p>
+            <p class="stat-label">Storage Used</p>
+          </div>
+        </div>
+
+        <!-- ===== DEPARTMENTS ===== -->
+        <h2 class="section-title">Departments</h2>
+        <div class="dept-grid">
+
+          <!-- BSIT -->
+          <div class="dept-card dept-bsit">
+            <div class="dept-photo">
+              <span class="dept-tag">BSIT</span>
+              <div class="dept-info">
+                <p class="dept-code">BSIT</p>
+                <p class="dept-name">Bachelor of Science in Information Technology</p>
+              </div>
+            </div>
+            <div class="dept-body">
+              <div class="dept-stats">
+                <span><svg class="icon"><use href="#i-calendar"/></svg> 14 Events</span>
+                <span><svg class="icon"><use href="#i-photos"/></svg> 328 Photos</span>
+              </div>
+              <div class="dept-btn">View Gallery <svg class="icon"><use href="#i-arrow"/></svg></div>
+            </div>
+          </div>
+
+          <!-- BSED -->
+          <div class="dept-card dept-bsed">
+            <div class="dept-photo">
+              <span class="dept-tag">BSED</span>
+              <div class="dept-info">
+                <p class="dept-code">BSED</p>
+                <p class="dept-name">English &amp; Science</p>
+              </div>
+            </div>
+            <div class="dept-body">
+              <div class="dept-stats">
+                <span><svg class="icon"><use href="#i-calendar"/></svg> 11 Events</span>
+                <span><svg class="icon"><use href="#i-photos"/></svg> 247 Photos</span>
+              </div>
+              <div class="dept-btn">View Gallery <svg class="icon"><use href="#i-arrow"/></svg></div>
+            </div>
+          </div>
+
+          <!-- BSHM -->
+          <div class="dept-card dept-bshm">
+            <div class="dept-photo">
+              <span class="dept-tag">BSHM</span>
+              <div class="dept-info">
+                <p class="dept-code">BSHM</p>
+                <p class="dept-name">Bachelor of Science in Hospitality Management</p>
+              </div>
+            </div>
+            <div class="dept-body">
+              <div class="dept-stats">
+                <span><svg class="icon"><use href="#i-calendar"/></svg> 9 Events</span>
+                <span><svg class="icon"><use href="#i-photos"/></svg> 193 Photos</span>
+              </div>
+              <div class="dept-btn">View Gallery <svg class="icon"><use href="#i-arrow"/></svg></div>
+            </div>
+          </div>
+
+          <!-- BEED -->
+          <div class="dept-card dept-beed">
+            <div class="dept-photo">
+              <span class="dept-tag">BEED</span>
+              <div class="dept-info">
+                <p class="dept-code">BEED</p>
+                <p class="dept-name">Bachelor in Elementary Education</p>
+              </div>
+            </div>
+            <div class="dept-body">
+              <div class="dept-stats">
+                <span><svg class="icon"><use href="#i-calendar"/></svg> 12 Events</span>
+                <span><svg class="icon"><use href="#i-photos"/></svg> 281 Photos</span>
+              </div>
+              <div class="dept-btn">View Gallery <svg class="icon"><use href="#i-arrow"/></svg></div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

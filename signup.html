@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FOTO | Create Account</title>
+  <!-- ALL design comes from style.css -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== SIGN UP CARD ===== -->
+  <main class="login-card">
+
+    <!-- Title -->
+    <h1 class="brand-title">FOTO</h1>
+    <p class="brand-subtitle">Capture Every Moment</p>
+
+    <!-- Heading -->
+    <h2 class="page-heading">Create New Journalist Account</h2>
+
+    <!-- PHP: put your sign-up file name in action="" (example: register.php) -->
+    <form class="page-form" action="" method="POST">
+
+      <!-- Username -->
+      <div class="input-box">
+        <input type="text" name="username" placeholder="Username" required>
+      </div>
+
+      <!-- Email -->
+      <div class="input-box">
+        <input type="email" name="email" placeholder="Email address" required>
+      </div>
+
+      <!-- Password -->
+      <div class="input-box">
+        <input type="password" name="password" placeholder="Password" required>
+      </div>
+
+      <!-- Confirm password -->
+      <div class="input-box">
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+      </div>
+
+      <!-- Create button -->
+      <button type="submit" class="btn-blue">Create Account</button>
+
+      <!-- Back to login (goes to index.html) -->
+      <p class="signup-text">Already have an account? <a href="index.html">Log in</a></p>
+    </form>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="page-footer">
+    FOTO • Capture Every Moment • College Departmental Photo Gallery<br>
+    © 2026 FOTO. All rights reserved.
+  </footer>
+
+</body>
+</html>
